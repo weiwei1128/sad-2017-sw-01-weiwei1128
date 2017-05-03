@@ -29,7 +29,10 @@ namespace SAD_Project2017.Models
 
         public Member Get(int id)
         {
-            return Members.Find(p=>p.id==id);
+            Member item = Members.Find(p => p.id == id);
+            if(item==null)
+                throw new ArgumentNullException();
+            return item;
         }
 
         public IEnumerable<Member> GetAll()
