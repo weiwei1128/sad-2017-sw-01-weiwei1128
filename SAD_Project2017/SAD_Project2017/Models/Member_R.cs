@@ -14,6 +14,7 @@ namespace SAD_Project2017.Models
 			Add(new Member { firstname = "David", lastname = "Becker", username = "thunder12", address = "city center,ghost Rd." });
 			Add(new Member { firstname = "Mary", lastname = "Xiang", username = "wholepackage", address = "uy street no. 5" });
             Add(new Member { firstname = "Mary", lastname = "Delod", username = "superhero94", address = "polly district" });
+            Add(new Member { firstname = "Cherry", lastname = "Parker", username = "cherryP", address = "hahn road, room 18" });
             
         }
 
