@@ -19,17 +19,13 @@ namespace SAD_Project2017.Controllers
         public Member Get(int id)
         {
             Member item = repository.Get(id);
-            if (item == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            return item;
+            return  item;
         }
 
         public HttpResponseMessage Post(Member item)
         {
             item = repository.Add(item);
             var response = Request.CreateResponse<Member>(HttpStatusCode.Created, item);
-
             string uri = Url.Link("DefaultApi", new { id = item.id });
             response.Headers.Location = new Uri(uri);
             return response;
