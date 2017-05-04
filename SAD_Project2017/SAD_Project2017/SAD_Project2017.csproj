@@ -89,6 +89,7 @@
     <Compile Include="Models\MemberRepository.cs" />
     <Compile Include="Models\Member_R.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Models\Message.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
