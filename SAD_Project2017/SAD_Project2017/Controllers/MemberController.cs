@@ -13,14 +13,18 @@ namespace SAD_Project2017.Controllers
 
         public IEnumerable<Member> GetAllMember()
         {
-            return repository.GetAll();
+            return repository.GetAllMember();
         }
 
-        public Member Get(int id)
+        public Message Get(int id)
         {
             Member item = repository.Get(id);
-            return  item;
+            if (item.id.Equals(404) && item.returnCode.Equals(false))
+                return new  Message { id = 1, message = item.message };
+
+            return item;
         }
+
 
         public HttpResponseMessage Post(Member item)
         {
