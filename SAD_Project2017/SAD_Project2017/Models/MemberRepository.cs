@@ -8,7 +8,7 @@ namespace SAD_Project2017.Models
         System.Collections.Generic.IEnumerable<Member> GetAll();
         Member Get(int id);
         Member Add(Member item);
-        void Remove(int id);
+        Message Remove(int id);
         Boolean Update(Member item);
     }
 }
