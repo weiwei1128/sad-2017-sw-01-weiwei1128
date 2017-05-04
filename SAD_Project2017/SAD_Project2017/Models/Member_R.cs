@@ -10,19 +10,27 @@ namespace SAD_Project2017.Models
         public Member_R()
         {
             //default data
-            Add(new Member { firstname = "John", message = "", lastname = "Wu", username = "sunshine00", address = "downtown" });
-            Add(new Member { firstname = "David", message = "", lastname = "Becker", username = "thunder12", address = "city center,ghost Rd." });
-            Add(new Member { firstname = "Mary", message = "", lastname = "Xiang", username = "wholepackage", address = "uy street no. 5" });
-            Add(new Member { firstname = "Mary", message = "", lastname = "Delod", username = "superhero94", address = "polly district" });
-            Add(new Member { firstname = "Cherry", message="",lastname = "Parker", username = "cherryP", address = "hahn road, room 18" });
+            Add(new Member { firstname = "John", returnCode = true ,lastname = "Wu", username = "sunshine00", address = "downtown" });
+            Add(new Member { firstname = "David", returnCode = true, lastname = "Becker", username = "thunder12", address = "city center,ghost Rd." });
+            Add(new Member { firstname = "Mary", returnCode = true, lastname = "Xiang", username = "wholepackage", address = "uy street no. 5" });
+            Add(new Member { firstname = "Mary", returnCode = true, lastname = "Delod", username = "superhero94", address = "polly district" });
+            Add(new Member { firstname = "Cherry", returnCode =true,lastname = "Parker", username = "cherryP", address = "hahn road, room 18" });
 
+        }
+
+        public Message AddMessage(Message message){
+            if (message == null)
+                return new Message{id=1,message="error"};
+            return message;
         }
 
         public Member Add(Member item)
         {
             if (item == null)
-                throw new ArgumentNullException();
+                return new Member { id = 404, returnCode = false,message="not existed" };
             item.id = next_id++;
+            if (item.returnCode != true)
+                item.returnCode = true;
             Members.Add(item);
             return item;
         }
@@ -31,7 +39,7 @@ namespace SAD_Project2017.Models
         {
             Member item = Members.Find(p => p.id == id);
             if (item == null)
-                throw new ArgumentNullException();
+                return new Member { id = 404, returnCode = false, message = "not existed" };
             return item;
         }
 
@@ -40,17 +48,18 @@ namespace SAD_Project2017.Models
             return Members;
         }
 
-        public void Remove(int id)
+        public Message Remove(int id)
         {
             //delete all the item whose id fits
             Members.RemoveAll(p => p.id == id);
+            return new Message { id = 1, message = "removed" };
         }
 
         public bool Update(Member item)
         {
             //Remove and add
             if (item == null)
-                throw new ArgumentNullException();
+                return false;
             int index = Members.FindIndex(p => p.id == item.id);
             if (index == -1)
                 return false;
