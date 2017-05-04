@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SAD_Project2017.Models
 {
-    public class Member
+    public class Member :Message
     {
         public int id { get; set; }
         //error or success
