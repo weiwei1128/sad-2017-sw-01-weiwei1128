@@ -43,7 +43,7 @@ namespace SAD_Project2017.Models
             return item;
         }
 
-        public IEnumerable<Member> GetAll()
+        public IEnumerable<Member> GetAllMember()
         {
             return Members;
         }

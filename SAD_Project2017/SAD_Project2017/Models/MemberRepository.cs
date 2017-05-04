@@ -5,7 +5,7 @@ namespace SAD_Project2017.Models
     // Define a generic interface for the repository
     public interface MemberRepository
     {
-        System.Collections.Generic.IEnumerable<Member> GetAll();
+        System.Collections.Generic.IEnumerable<Member> GetAllMember();
         Member Get(int id);
         Member Add(Member item);
         Message Remove(int id);
