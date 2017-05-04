@@ -5,6 +5,8 @@ namespace SAD_Project2017.Models
     {
         public int id { get; set; }
         //error or success
+        public Boolean returnCode { get; set; }
+        //message
         public String message { get; set; }
         public String firstname { get; set; }
         public String lastname { get; set; }
