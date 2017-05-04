@@ -42,6 +42,7 @@ namespace SAD_Project2017.Models
 
         public void Remove(int id)
         {
+            //delete all the item whose id fits
             Members.RemoveAll(p => p.id == id);
         }
 
