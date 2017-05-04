@@ -35,21 +35,23 @@ namespace SAD_Project2017.Controllers
             return response;
         }
 
-        public void Put(int id, Member item)
+        public Message Put(int id, Member item)
         {
             item.id = id;
-            if (!repository.Update(item))
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
+            String message;
+            if (repository.Update(item))
+                message = "Updated";
+            else message = "Update failed";
+            
+            return new Message { id = 1, message = message };
         }
 
-        public void Delete(int id)
+        public Message Delete(int id)
         {
             Member item = repository.Get(id);
-            if (item == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            repository.Remove(id);
+            if(item.id.Equals(404)&&item.returnCode.Equals(false))
+                return new Message { id = 1, message = item.message };
+            return repository.Remove(id);
         }
     }
 }
