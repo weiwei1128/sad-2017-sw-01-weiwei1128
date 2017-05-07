@@ -55,17 +55,19 @@ namespace SAD_Project2017.Models
             return new Message { id = 1, message = "removed" };
         }
 
-        public bool Update(Member item)
+        public int Update(Member item)
         {
+            //0: succeed 1: failed(not input data) 2: failed(other reason)
             //Remove and add
             if (item == null)
-                return false;
+                return 1;
             int index = Members.FindIndex(p => p.id == item.id);
             if (index == -1)
-                return false;
+                return 1;
             Members.RemoveAt(index);
+            item.message = "Updated";
             Members.Add(item);
-            return true;
+            return 2;
         }
     }
 }
