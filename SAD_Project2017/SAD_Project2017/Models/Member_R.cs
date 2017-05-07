@@ -28,6 +28,7 @@ namespace SAD_Project2017.Models
         {
             if (item == null)
                 return new Member { id = 404, returnCode = false,message="not existed" };
+            
             item.id = next_id++;
             if (item.returnCode != true)
                 item.returnCode = true;
@@ -60,14 +61,19 @@ namespace SAD_Project2017.Models
             //0: succeed 1: failed(not input data) 2: failed(other reason)
             //Remove and add
             if (item == null)
-                return 1;
+                return 2;
             int index = Members.FindIndex(p => p.id == item.id);
             if (index == -1)
+                return 2;
+            if (item.firstname==null ||item.firstname == ""
+                || item.lastname.Equals(null)|| item.lastname == ""
+                || item.username.Equals(null)|| item.username == ""
+                ||item.address.Equals(null)|| item.address == "")
                 return 1;
             Members.RemoveAt(index);
             item.message = "Updated";
             Members.Add(item);
-            return 2;
+            return 0;
         }
     }
 }
