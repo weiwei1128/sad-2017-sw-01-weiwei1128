@@ -20,7 +20,7 @@ namespace SAD_Project2017.Controllers
         {
             Member item = repository.Get(id);
             if (item.id.Equals(404) && item.returnCode.Equals(false))
-                return new  Message { id = 1, message = item.message };
+                return new Message { id = 1, message = item.message };
 
             return item;
         }
@@ -37,19 +37,37 @@ namespace SAD_Project2017.Controllers
 
         public Message Put(int id, Member item)
         {
-            item.id = id;
+
             String message;
-            if (repository.Update(item))
-                message = "Updated";
-            else message = "Update failed";
-            
+            if (item == null)
+                message = "Failed!!!";
+            else { 
+            item.id = id;
+            switch (repository.Update(item))
+            {
+                //0: succeed 1: failed(not input data) 2: failed(other reason)
+                case 0:
+                    message = "Updated";
+                    break;
+                case 1:
+                    message = "Failed, please input all the information.";
+                    break;
+                case 2:
+                    message = "Failed";
+                    break;
+                default:
+                    message = "Unknown error.";
+                    break;
+            }
+        }
+
             return new Message { id = 1, message = message };
         }
 
         public Message Delete(int id)
         {
             Member item = repository.Get(id);
-            if(item.id.Equals(404)&&item.returnCode.Equals(false))
+            if (item.id.Equals(404) && item.returnCode.Equals(false))
                 return new Message { id = 1, message = item.message };
             return repository.Remove(id);
         }
