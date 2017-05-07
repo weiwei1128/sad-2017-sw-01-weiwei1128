@@ -9,6 +9,6 @@ namespace SAD_Project2017.Models
         Member Get(int id);
         Member Add(Member item);
         Message Remove(int id);
-        Boolean Update(Member item);
+        int Update(Member item);
     }
 }
