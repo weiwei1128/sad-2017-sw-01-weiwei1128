@@ -21,7 +21,8 @@ namespace SAD_Project2017.Models
 
         public int Add(Member item)
         {
-            if (item == null)
+			//0: succeed 1: failed(not input data) 2: failed, data empty
+			if (item == null)
                 return 2;
             if (item.firstname == null || item.firstname == ""
                 || item.lastname.Equals(null) || item.lastname == ""
@@ -57,13 +58,13 @@ namespace SAD_Project2017.Models
 
         public int Update(Member item)
         {
-            //0: succeed 1: failed(not input data) 2: failed(other reason)
+            //0: succeed 1: failed(not input data) 2: failed(other reason) 3: can't find oringinal data
             //Remove and add
             if (item == null)
                 return 2;
             int index = Members.FindIndex(p => p.id == item.id);
             if (index == -1)
-                return 2;
+                return 3;
             if (item.firstname==null ||item.firstname == ""
                 || item.lastname.Equals(null)|| item.lastname == ""
                 || item.username.Equals(null)|| item.username == ""
@@ -72,6 +73,8 @@ namespace SAD_Project2017.Models
             Members.RemoveAt(index);
             item.message = "Updated";
             Members.Add(item);
+			if (item.returnCode != true)
+				item.returnCode = true;
             return 0;
         }
     }
