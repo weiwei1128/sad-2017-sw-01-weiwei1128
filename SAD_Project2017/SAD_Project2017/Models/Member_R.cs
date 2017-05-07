@@ -18,22 +18,21 @@ namespace SAD_Project2017.Models
 
         }
 
-        public Message AddMessage(Message message){
-            if (message == null)
-                return new Message{id=1,message="error"};
-            return message;
-        }
 
-        public Member Add(Member item)
+        public int Add(Member item)
         {
             if (item == null)
-                return new Member { id = 404, returnCode = false,message="not existed" };
-            
+                return 2;
+            if (item.firstname == null || item.firstname == ""
+                || item.lastname.Equals(null) || item.lastname == ""
+                || item.username.Equals(null) || item.username == ""
+                || item.address.Equals(null) || item.address == "")
+                return 1;
             item.id = next_id++;
             if (item.returnCode != true)
                 item.returnCode = true;
             Members.Add(item);
-            return item;
+            return 0;
         }
 
         public Member Get(int id)
